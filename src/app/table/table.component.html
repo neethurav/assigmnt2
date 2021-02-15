@@ -1,0 +1,32 @@
+
+<div class="row">
+    <div class="col-sm-6" >
+        <table class="table"  >
+            <thead class="thead-dark">
+              <tr class="danger">
+                
+                <th scope="col">Name</th>
+                <th scope="col">Company</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+             <tr class="bg-success" *ngFor="let member of members">
+                <td><a  (click)="sendtochild(member)" >{{member.name}}</a></td>
+                <td>{{member.company.name}}</td>
+                <td>{{member.phone}}</td>
+                <td>{{member.email}}</td>
+              </tr>
+            
+             </tbody>
+            
+        </table>
+        </div>
+
+
+     <div class="col-sm-6">
+        <app-child1 (aClick)="childClicked($event)" ></app-child1>
+         </div>
+</div>
