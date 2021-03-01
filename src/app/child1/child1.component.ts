@@ -1,3 +1,4 @@
+import { TableService } from './../table/table.service';
 import { Component,OnInit,  OnChanges ,ViewChild,Output,EventEmitter} from '@angular/core';
 import { SharedService } from '../shared.service';
 import { NgForm } from '@angular/forms';
@@ -12,9 +13,12 @@ export class Child1Component implements OnInit, OnChanges {
   @ViewChild('empForm') neethuForm ?: NgForm;
   empForm?:any;
   complexObject?:any;
-
+  lessons:boolean=false;
+  totalEstimate = 10;
+  ctx = {estimate: this.totalEstimate};
 
   person:any;
+  TableService: any;
   constructor(private sharedService:SharedService) {
     
    
@@ -49,8 +53,22 @@ this.person=this.sharedService.persondetails;
 
     console.log("Child: ",' link clicked value is :',this.complexObject)
 
-    this.aClick.emit(this.complexObject);
+   
+    this.sharedService.createthelist(this.complexObject).subscribe((data: any) => {
+      console.log(data);
+      this.aClick.emit(this.complexObject);
+    });
  
   }
+
+updatemember(){
+  this.complexObject=this.neethuForm?.form.value;
+  this.sharedService.updatemember(this.complexObject).subscribe((data: any) => {
+   
+    this.aClick.emit(this.complexObject);
+  });
+
+}
+
 
 }

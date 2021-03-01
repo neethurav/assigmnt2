@@ -9,15 +9,17 @@
                 <th scope="col">Company</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Email</th>
+                <th></th>
               </tr>
             </thead>
             
             <tbody>
              <tr class="bg-success" *ngFor="let member of members">
                 <td><a  (click)="sendtochild(member)" >{{member.name}}</a></td>
-                <td>{{member.company.name}}</td>
+                <td>{{member.company}}</td>
                 <td>{{member.phone}}</td>
                 <td>{{member.email}}</td>
+                <td><button (click)="deletemember(member._id)">delete</button></td>
               </tr>
             
              </tbody>
